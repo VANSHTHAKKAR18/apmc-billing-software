@@ -113,4 +113,4 @@ This software is proprietary and developed for private use by APMC Unjha commiss
 
 ---
 
-**Built with ❤️ for APMC Unjha Traders**
+**Built for APMC Unjha Traders**
