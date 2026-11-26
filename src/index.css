@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #8B1A1A;
+  --primary-light: #A52A2A;
+  --gold: #D4A843;
+  --gold-light: #E8C86A;
+  --dark-bg: #0B0D13;
+  --dark-card: #12151E;
+  --dark-elevated: #1A1D2B;
+  --dark-border: #252838;
+  --dark-hover: #2A2D40;
+  --text-primary: #F1F3F5;
+  --text-secondary: #868E96;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  overflow: hidden;
+  user-select: none;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(134,142,150,0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(134,142,150,0.5); }
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-card/80 backdrop-blur-xl border border-dark-border rounded-2xl;
+  }
+  .glass-card-elevated {
+    @apply bg-dark-elevated/80 backdrop-blur-xl border border-dark-border rounded-2xl;
+  }
+  .gradient-primary {
+    background: linear-gradient(135deg, #8B1A1A 0%, #C0392B 50%, #E74C3C 100%);
+  }
+  .gradient-gold {
+    background: linear-gradient(135deg, #7d6822 0%, #D4A843 50%, #E8C86A 100%);
+  }
+  .gradient-mesh {
+    background:
+      radial-gradient(at 20% 20%, rgba(139,26,26,0.15) 0%, transparent 50%),
+      radial-gradient(at 80% 80%, rgba(212,168,67,0.1) 0%, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(26,29,43,0.8) 0%, transparent 100%);
+  }
+  .input-field {
+    @apply w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3
+    text-white placeholder-surface-600 focus:outline-none focus:border-primary-600
+    focus:ring-1 focus:ring-primary-600/50 transition-all duration-200;
+  }
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white transition-all duration-200
+    bg-gradient-to-r from-primary-700 to-primary-600 hover:from-primary-600 hover:to-primary-500
+    shadow-lg hover:shadow-glow active:scale-[0.98];
+  }
+  .btn-gold {
+    @apply px-6 py-3 rounded-xl font-semibold text-dark-bg transition-all duration-200
+    bg-gradient-to-r from-gold-400 to-gold-300 hover:from-gold-300 hover:to-gold-200
+    shadow-lg hover:shadow-glow-gold active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply px-4 py-2 rounded-xl font-medium text-surface-400 transition-all duration-200
+    hover:bg-dark-hover hover:text-white active:scale-[0.98];
+  }
+  .stat-card {
+    @apply p-6 relative overflow-hidden transition-all duration-300;
+    /* note: also add 'group glass-card hover:border-primary-700/50' in JSX */
+    background: rgba(18,21,30,0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid #252838;
+    border-radius: 1rem;
+  }
+  .stat-card:hover {
+    border-color: rgba(139,26,26,0.5);
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+.light body,
+.light {
+  --dark-bg: #F8F9FA;
+  --dark-card: #FFFFFF;
+  --dark-elevated: #F1F3F5;
+  --dark-border: #DEE2E6;
+  --dark-hover: #E9ECEF;
+  --text-primary: #212529;
+  --text-secondary: #868E96;
+}
+
+.light .glass-card {
+  background: rgba(255,255,255,0.9);
+  border-color: #DEE2E6;
+}
+
+.light .input-field {
+  background: #F1F3F5;
+  border-color: #DEE2E6;
+  color: #212529;
+}
+
+/* Title bar drag region */
+.titlebar-drag { -webkit-app-region: drag; }
+.titlebar-nodrag { -webkit-app-region: no-drag; }
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; overflow: visible; }
+}
+
+/* Number input hide arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { -moz-appearance: textfield; }
